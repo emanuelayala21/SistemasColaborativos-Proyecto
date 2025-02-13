@@ -1,0 +1,24 @@
+# Python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment folder
+venv/
+  
+# Database files
+*.sqlite3
+
+# Log files
+*.log
+
+# System configuration files (Mac, Windows, etc.)
+.DS_Store
+Thumbs.db
+
+# IDE configuration files (like VSCode)
+.vscode/
+
+# Other files that could cause issues in the repository
+*.env
