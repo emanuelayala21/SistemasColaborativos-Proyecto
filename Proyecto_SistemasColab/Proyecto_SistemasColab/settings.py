@@ -79,23 +79,17 @@ WSGI_APPLICATION = 'Proyecto_SistemasColab.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # Use MySQL as the database engine
+        'NAME': 'colaborativosddbb',  # Name of your database
+        'USER': 'root',           # MySQL user
+        'PASSWORD': 'root',           # MySQL password
+        'HOST': 'localhost',                   # Database host (use IP if not localhost)
+        'PORT': '3306',                        # Default MySQL port
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',  # Use MySQL as the database engine
-#         'NAME': 'nombre_de_tu_base_de_datos',  # Name of your database
-#         'USER': 'nombre_de_usuario',           # MySQL user
-#         'PASSWORD': 'tu_contraseña',           # MySQL password
-#         'HOST': 'localhost',                   # Database host (use IP if not localhost)
-#         'PORT': '3306',                        # Default MySQL port
-#     }
-# }
 
 
 # Password validation
