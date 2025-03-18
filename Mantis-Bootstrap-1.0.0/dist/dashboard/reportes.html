@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Reportes de Viajes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Reportes de Viajes - Admin Dashboard">
+  <meta name="keywords" content="Reportes, Viajes, Estadísticas">
+  <meta name="author" content="Tu Nombre">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="estilos/Style_Reportes_Viajes.css">
+</head>
+
+<body>
+  <header class="header-section">
+    <h2 class="text-white text-center py-3">Reportes de Viajes</h2>
+  </header>
+
+  <div class="container mt-4">
+    <div class="report-container">
+      <h3 class="text-center">Filtrar Reportes</h3>
+      <form id="form-reporte" class="d-flex justify-content-center gap-3">
+        <label for="filtro-fecha">Fecha:</label>
+        <input type="date" id="filtro-fecha" class="form-control">
+
+        <label for="filtro-transporte">Medio de Transporte:</label>
+        <select id="filtro-transporte" class="form-select">
+          <option value="">Todos</option>
+          <option value="terrestre">Terrestre</option>
+          <option value="aereo">Aéreo</option>
+          <option value="maritimo">Marítimo</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+      </form>
+    </div>
+
+    <div class="table-container mt-4">
+      <h3 class="text-center">Lista de Viajes</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Nombre del Viaje</th>
+            <th>Fecha</th>
+            <th>Medio de Transporte</th>
+            <th>Cantidad de Personas</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-reporte-body">
+          <!-- Datos de los reportes -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart-container mt-4">
+      <h3 class="text-center">Estadísticas</h3>
+      <canvas id="grafico-transporte"></canvas>
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="exportar-pdf" class="btn btn-primary">Exportar a PDF</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../../src/assets/js/auth.js"></script>
+</body>
+
+</html>

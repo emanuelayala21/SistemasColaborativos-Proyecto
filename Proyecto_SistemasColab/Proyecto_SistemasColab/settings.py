@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,9 @@ INSTALLED_APPS = [
     '_appTrip',  # For trip management
     '_appReports',  # For managing reports
     '_appNotifications',  # For managing notifications
+    'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Habilita CORS
 ]
 
 ROOT_URLCONF = 'Proyecto_SistemasColab.urls'
@@ -85,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Use MySQL as the database engine
         'NAME': 'colaborativosddbb',  # Name of your database
         'USER': 'root',           # MySQL user
-        'PASSWORD': 'root',           # MySQL password
+        'PASSWORD': 'MasTer123@@**',           # MySQL password
         'HOST': 'localhost',                   # Database host (use IP if not localhost)
         'PORT': '3306',                        # Default MySQL port
     }
@@ -136,3 +141,23 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",  # Si usas Live Server
+    "http://localhost:5500"   # Asegúrate que el puerto coincida
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),  # Expira en 30 min
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Expira en 1 día
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}

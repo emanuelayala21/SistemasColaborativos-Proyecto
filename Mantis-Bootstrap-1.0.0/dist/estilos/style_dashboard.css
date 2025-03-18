@@ -1,0 +1,59 @@
+/* Estilos generales */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Public Sans', sans-serif;
+  }
+  
+  /* Encabezado */
+  .header-wrapper {
+    background: #007bff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .header-wrapper h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  /* Botones de navegación */
+  .header-wrapper nav .btn {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background-color: white;
+    color: #007bff;
+    border: none;
+    transition: 0.3s;
+  }
+  
+  .header-wrapper nav .btn:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  /* Contenido principal */
+  .container-content {
+    margin-top: 40px;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .container-content h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .container-content p {
+    font-size: 16px;
+    color: #555;
+  }
+  

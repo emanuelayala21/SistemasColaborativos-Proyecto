@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Gestión de Viajes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Gestión de Viajes - Admin Dashboard">
+  <meta name="keywords" content="Viajes, Dashboard, Gestión">
+  <meta name="author" content="Tu Nombre">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../estilos/Style_Gestion_Viajes.css">
+  <script src="../../src/backend/Generar_Viaje.js" defer></script>
+
+</head>
+
+<body>
+  <header class="header-section">
+    <h2 class="text-white text-center py-3">Gestión de Viajes</h2>
+  </header>
+
+  <div class="container mt-4">
+    <div class="form-container">
+      <h3 class="text-center">Crear un Nuevo Viaje</h3>
+      <form id="form-viajes">
+        <label for="nombre">Nombre del Viaje:</label>
+        <input type="text" id="nombre" class="form-control" placeholder="Ej: San Carlos 2023" required>
+
+        <label for="fecha-inicio">Fecha de Inicio:</label>
+        <input type="date" id="fecha-inicio" class="form-control" required>
+
+        <label for="fecha-fin">Fecha de Fin:</label>
+        <input type="date" id="fecha-fin" class="form-control" required>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" class="form-control" rows="3" placeholder="Detalles sobre el viaje..." required></textarea>
+
+        <label for="medio">Medio de Transporte:</label>
+        <select id="medio" class="form-select">
+          <option value="terrestre">Terrestre</option>
+          <option value="aereo">Aéreo</option>
+          <option value="maritimo">Marítimo</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary mt-3 w-100">Crear Viaje</button>
+      </form>
+    </div>
+
+    <div class="list-container mt-4">
+      <h3 class="text-center">Viajes Creados</h3>
+      <ul id="viajes-lista" class="list-group">
+        <!-- Aquí se mostrarán los viajes creados -->
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../src/assets/js/auth.js"></script>
+  <script src="../../src/assets/js/Viajes/crearviaje.js"></script>
+</body>
+
+</html>

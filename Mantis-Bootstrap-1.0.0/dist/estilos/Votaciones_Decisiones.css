@@ -1,0 +1,52 @@
+/* Estilos generales */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Public Sans', sans-serif;
+  }
+  
+  /* Encabezado */
+  .header-section {
+    background: #007bff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-section h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  /* Contenedor del formulario */
+  .form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Botón */
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Lista de decisiones */
+  .list-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  

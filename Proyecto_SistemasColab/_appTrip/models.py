@@ -4,11 +4,10 @@ from _appUser.models import Usuario
 class Viaje(models.Model):
     cedula_creador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     titulo = models.CharField(max_length=100)
-    destino = models.CharField(max_length=100)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     descripcion = models.CharField(max_length=200)
-    fecha_creacion = models.DateField()
+    fecha_creacion = models.DateField(auto_now_add=True)
 
     class Meta:
         db_table = 'Viaje'  # Nombre exacto de la tabla en la base de datos

@@ -1,0 +1,179 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilos generales */
+body {
+    background-color: #3FA9F5;
+    color: white;
+}
+
+/* Barra de navegación */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: white;
+    border-radius: 50px;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    font-size: 22px;
+    color: #0056b3;
+}
+
+.logo b {
+    color: orange;
+}
+
+/* Navegación */
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: orange;
+}
+
+/* Botón de registro */
+.buttons .register {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #0056b3;
+    color: white;
+}
+
+.buttons .register:hover {
+    background: orange;
+}
+
+/* Sección Hero */
+.hero {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 80vh;
+    padding: 50px;
+}
+
+/* Imagen del avión */
+.hero-image {
+    position: absolute;
+    bottom: 100px;
+    left: 50px;
+}
+
+.hero-image img {
+    width: 650px;
+    max-width: 100%;
+    animation: float 3s infinite ease-in-out;
+}
+
+/* Animación de la imagen */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Contenedor del formulario */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0vh; /* Reduce más la altura para subir el formulario */
+    margin-top: -200px; /* Lo sube más */
+}
+
+/* Caja del formulario (manteniendo tamaño) */
+.login-box {
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    text-align: center;
+}
+
+
+/* Título del formulario */
+.login-box h2 {
+    font-size: 26px; /* Más grande */
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #0056b3;
+}
+
+/* Grupo de entrada (correo y contraseña) */
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 16px; /* Aumenta el tamaño del texto */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px; /* Aumenta la altura */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px; /* Fuente más grande */
+}
+
+/* Opciones (recordarme y olvidar contraseña) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px; /* Aumenta el tamaño */
+    margin-bottom: 22px;
+}
+
+/* Botón de inicio de sesión */
+.login-btn {
+    width: 100%;
+    padding: 14px; /* Aumenta la altura */
+    background-color: #0056b3;
+    border: none;
+    color: white;
+    font-size: 18px; /* Botón más grande */
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background-color: orange;
+}
+
+/* Iconos dentro de las etiquetas */
+.input-group label i {
+    margin-right: 10px;
+    color: #0056b3;
+}

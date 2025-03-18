@@ -17,7 +17,7 @@ CREATE TABLE Viaje (
     fecha_fin DATE NOT NULL,
     descripcion  VARCHAR(200),
     fecha_creacion DATE,
-    FOREIGN KEY (cedula_creador) REFERENCES Usuario(cedula) ON DELETE CASCADE
+    FOREIGN KEY (cedula_creador) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS Participante_Viaje;
@@ -28,7 +28,7 @@ CREATE TABLE Participante_Viaje (
     fecha_union DATE,
     es_admin BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id_viaje) REFERENCES Viaje(id) ON DELETE CASCADE,
-    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(cedula) ON DELETE CASCADE
+    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS Votacion;
@@ -40,7 +40,7 @@ CREATE TABLE Votacion (
     descripcion VARCHAR(150) NOT NULL, 
     fecha_creacion DATE,
     FOREIGN KEY (id_viaje) REFERENCES Viaje(id) ON DELETE CASCADE,
-    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(cedula) ON DELETE CASCADE
+    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS Opcion_Votacion;
@@ -59,7 +59,7 @@ CREATE TABLE Respuesta_Votacion (
     id_opcion INT NOT NULL,
     fecha_respuesta DATE,
     FOREIGN KEY (id_votacion) REFERENCES Votacion(id) ON DELETE CASCADE,
-    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(cedula) ON DELETE CASCADE,
+    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(id) ON DELETE CASCADE,
     FOREIGN KEY (id_opcion) REFERENCES Opcion_Votacion(id) ON DELETE CASCADE
 );
 
@@ -72,5 +72,5 @@ CREATE TABLE Nota_Importante (
     contenido VARCHAR(255) NOT NULL,
     fecha_creacion DATE,
     FOREIGN KEY (id_viaje) REFERENCES Viaje(id) ON DELETE CASCADE,
-    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(cedula) ON DELETE CASCADE
+    FOREIGN KEY (cedula_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
