@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import CrearViajeView
+from .views import ViajeViewSet
+
 
 urlpatterns = [
-    path('crear/', CrearViajeView.as_view(), name='crear_viaje'),
+    path('crear_viaje/', ViajeViewSet.as_view({'post': 'create'}), name='crear_viaje'),
 ]
+
+

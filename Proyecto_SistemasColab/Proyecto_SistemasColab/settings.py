@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = "_appUser.Usuario"
 
 # Application definition
 
@@ -155,9 +156,12 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),  # Expira en 30 min
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Expira en 1 día
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),  # Expira en 30 min
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # Expira en 1 día
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    'VERIFYING_KEY': None,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
