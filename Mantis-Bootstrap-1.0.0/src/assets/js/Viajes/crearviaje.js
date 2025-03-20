@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const fechaInicio = document.getElementById("fecha-inicio").value;
         const fechaFin = document.getElementById("fecha-fin").value;
         const descripcion = document.getElementById("descripcion").value.trim();
-        const medio = document.getElementById("medio").value;
 
         // Validar que los campos no estén vacíos
         if (!nombre || !fechaInicio || !fechaFin || !descripcion) {
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // Enviar datos al servidor para crear el viaje
-            const response = await fetch("http://localhost:8000/api/viaje/crear/", {
+            const response = await fetch("http://localhost:8000/api/viaje/crear_viaje/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -42,8 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     titulo: nombre,
                     fecha_inicio: fechaInicio,
                     fecha_fin: fechaFin,
-                    descripcion: descripcion,
-                    medio_transporte: medio
+                    descripcion: descripcion
                 })
             });
 
