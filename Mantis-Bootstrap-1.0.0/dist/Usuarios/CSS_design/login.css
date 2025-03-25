@@ -1,46 +1,37 @@
-/* Estilos generales */
+/* Fuente moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('https://source.unsplash.com/1600x900/?travel,beach,mountains') no-repeat center center/cover;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 
-/* Barra superior */
-.header {
-    width: 100%;
-    background-color: #2b50ec;
-    padding: 15px 0;
-    text-align: center;
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-/* Contenedor principal */
+/* Contenedor del login */
 .login-container {
-    width: 420px;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    margin-top: 20px;
+    max-width: 400px;
+    width: 90%;
 }
 
 /* Título */
 .login-container h2 {
-    font-size: 22px;
+    font-size: 24px;
     color: #333;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-/* Input Groups */
+/* Inputs */
 .input-group {
     text-align: left;
     margin-bottom: 15px;
@@ -56,9 +47,9 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
 }
 
@@ -69,44 +60,75 @@ body {
     background-color: #2b50ec;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
+    transition: 0.3s;
+    font-weight: bold;
 }
 
 .login-btn:hover {
     background-color: #1d3bc2;
 }
 
-/* Enlace de registro */
-.register-link {
+/* Botón de registro */
+.register-btn {
+    width: 100%;
+    padding: 12px;
     margin-top: 10px;
-    font-size: 14px;
-}
-
-.register-link a {
-    color: #2b50ec;
-    text-decoration: none;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
     font-weight: bold;
 }
 
-.register-link a:hover {
-    text-decoration: underline;
+.register-btn:hover {
+    background-color: #357ABD;
 }
 
-/* Mensajes de error o éxito */
+/* Mensajes */
 .login-message {
     margin-top: 15px;
     font-size: 14px;
 }
 
-.success {
-    color: green;
+/* Animación sutil */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-container {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Mensaje de éxito/error en la parte superior */
+.register-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
     font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+}
+
+/* Estilos específicos para éxito y error */
+.success {
+    background-color: #4CAF50; /* Verde para éxito */
+    color: white;
 }
 
 .error {
-    color: red;
-    font-weight: bold;
+    background-color: #FF5733; /* Rojo para errores */
+    color: white;
 }
+

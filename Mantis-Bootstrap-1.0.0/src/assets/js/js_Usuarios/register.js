@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("registerForm");
+    const messageDiv = document.getElementById("registerMessage");
 
     if (!form) {
         console.error("Formulario no encontrado en el DOM");
@@ -16,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validar que los campos no estén vacíos
         if (!nombre || !email || !contraseña) {
-            alert("Todos los campos son obligatorios.");
+            showMessage("Todos los campos son obligatorios.", "error");
             return;
         }
 
         if (contraseña.length < 8) {
-            alert("La contraseña debe tener al menos 8 caracteres.");
+            showMessage("La contraseña debe tener al menos 8 caracteres.", "error");
             return;
         }
 
@@ -42,14 +43,31 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await response.json();
 
             // Mostrar mensaje de éxito o error
-            alert(data.message);
             if (response.ok) {
+                showMessage("¡Registro exitoso! Redirigiendo a iniciar sesión...", "success");
                 form.reset(); // Limpiar formulario después del registro exitoso
+                
+                // Redirigir después de 2 segundos
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 2000);
+            } else {
+                showMessage(data.message || "Hubo un error en el registro.", "error");
             }
 
         } catch (error) {
             console.error("Error en el registro:", error);
-            alert("Error en el servidor.");
+            showMessage("Error en el servidor. Inténtalo más tarde.", "error");
         }
     });
+
+    function showMessage(message, type) {
+        messageDiv.innerHTML = message;
+        messageDiv.className = `register-message ${type}`;
+        messageDiv.style.display = "block";
+
+        setTimeout(() => {
+            messageDiv.style.display = "none";
+        }, 3000);
+    }
 });

@@ -1,64 +1,76 @@
-/* Contenedor Principal del Formulario */
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor del formulario */
 .register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ocupa toda la pantalla */
-    background-color: #f8f9fa; /* Fondo claro */
+    width: 100%;
+    height: 100vh;
+    background-color: #f8f9fa;
 }
 
-/* Caja del Formulario */
+/* Caja del formulario */
 .register-box {
     background: white;
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    width: 70%; /* Hace que el formulario sea más grande */
-    max-width: 800px; /* Limita el tamaño en pantallas muy grandes */
+    width: 90%;
+    max-width: 450px;
     text-align: center;
 }
 
-/* Título del Formulario */
+/* Título */
 .register-box h2 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: bold;
-    margin-bottom: 25px;
-    color: #2c63ff; /* Azul fuerte */
-}
-
-/* Campos del Formulario */
-.input-group {
-    text-align: left;
+    color: #2c63ff;
     margin-bottom: 20px;
 }
 
-.input-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
-    font-size: 16px;
-    color: #333;
+/* Inputs */
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
 }
 
-.input-group input, .input-group select {
+.input-group label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
-/* Botón de Registro */
+/* Botón de registro */
 .register-btn {
     width: 100%;
-    padding: 15px;
+    padding: 12px;
     background-color: #2c63ff;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     border-radius: 6px;
-    transition: 0.3s;
+    transition: background 0.3s;
     font-weight: bold;
 }
 
@@ -66,9 +78,18 @@
     background-color: #1a49d1;
 }
 
-/* Sección de "Usuarios Registrados" */
-.registered-users {
-    margin-top: 30px;
-    font-size: 20px;
+/* Enlace de inicio de sesión */
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #2c63ff;
+    text-decoration: none;
     font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }
