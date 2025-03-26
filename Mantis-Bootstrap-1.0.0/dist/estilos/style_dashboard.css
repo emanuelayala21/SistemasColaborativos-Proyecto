@@ -1,59 +1,153 @@
 /* Estilos generales */
 body {
-    background-color: #f8f9fa;
-    font-family: 'Public Sans', sans-serif;
+  background-color: #f8f9fa;
+  font-family: 'Public Sans', sans-serif;
+}
+
+/* Encabezado */
+.pc-header {
+  background: linear-gradient(to right, #007bff, #00b0ff);
+  padding: 10px 0;
+}
+
+.header-title {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Menú de navegación */
+.navbar-nav {
+  flex-direction: row;
+}
+
+.navbar-nav .nav-item {
+  margin-right: 20px;
+}
+
+/* Estilos de los botones en el navbar */
+.navbar-nav .nav-item .btn {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-item .btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Botón de "Cerrar sesión" */
+.navbar-nav .nav-item .btn-danger {
+  background-color: #dc3545;
+}
+
+.navbar-nav .nav-item .btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Responsive - En pantallas pequeñas */
+@media (max-width: 767px) {
+  /* Cabecera */
+  .header-title {
+      font-size: 24px;
   }
-  
-  /* Encabezado */
-  .header-wrapper {
-    background: #007bff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+
+  /* Navbar Toggle (botón de hamburguesa) */
+  .navbar-toggler {
+      border: none;
   }
-  
-  .header-wrapper h2 {
-    color: white;
-    font-size: 24px;
-    font-weight: 600;
+
+  /* Menú colapsable */
+  .navbar-collapse {
+      text-align: center;
+      padding-top: 10px;
   }
-  
-  /* Botones de navegación */
-  .header-wrapper nav .btn {
-    font-size: 16px;
-    font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 6px;
-    background-color: white;
-    color: #007bff;
-    border: none;
-    transition: 0.3s;
+
+  .navbar-nav {
+      margin-top: 10px;
   }
-  
-  .header-wrapper nav .btn:hover {
-    background-color: #0056b3;
-    color: white;
+
+  .navbar-nav .nav-item {
+      margin-right: 0;
+      margin-bottom: 10px;
   }
-  
-  /* Contenido principal */
-  .container-content {
-    margin-top: 40px;
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+
+  /* Botones más pequeños en pantallas pequeñas */
+  .navbar-nav .nav-item .btn {
+      font-size: 14px;
+      padding: 10px 18px;
   }
-  
-  .container-content h3 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .container-content p {
-    font-size: 16px;
-    color: #555;
-  }
-  
+}
+
+/* Estilos para el contenido del panel */
+.container-content {
+  margin-top: 40px;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.container-content h3 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #333;
+}
+
+.container-content p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Estilo del buscador */
+.search-container {
+  margin-top: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input {
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1px solid #007bff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-btn {
+  margin-top: 10px;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Efectos de hover en los botones */
+.search-input:focus {
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  border-color: #0056b3;
+}
+
+/* Estilos para la imagen */
+.image-container img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}

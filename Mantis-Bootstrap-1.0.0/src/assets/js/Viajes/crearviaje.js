@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Mostrar mensaje según la respuesta del servidor
             const viajesLista = document.getElementById("viajes-lista");
+            const mensajeExito = document.getElementById("mensaje-exito");
             if (response.ok) {
                 // Si la creación fue exitosa, agregar el viaje a la lista
                 const viajeItem = document.createElement("li");
@@ -59,7 +60,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Limpiar el formulario
                 form.reset();
 
-                alert("Viaje creado exitosamente!");
+                // Mostrar mensaje de éxito
+                mensajeExito.style.display = "block";
+                setTimeout(() => {
+                    mensajeExito.style.display = "none";
+                }, 3000);
+
+                // Actualizar la lista de viajes llamando la función obtenerViajes
+                obtenerViajes();
             } else {
                 alert(`Error: ${data.message || 'No se pudo crear el viaje'}`);
             }
