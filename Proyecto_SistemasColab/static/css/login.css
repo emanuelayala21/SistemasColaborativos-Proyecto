@@ -132,3 +132,26 @@ body {
     color: white;
 }
 
+.alert-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: 90%;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error,
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}

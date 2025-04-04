@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = "_appUser.Usuario"
+AUTH_USER_MODEL = '_appUser.Usuario'
 
 # Application definition
 
@@ -39,13 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     
     #Management APPS
     '_appUser',  # For user management
     '_appTrip',  # For trip management
     '_appReports',  # For managing reports
     '_appNotifications',  # For managing notifications
-    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
 ]
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -66,7 +68,7 @@ ROOT_URLCONF = 'Proyecto_SistemasColab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], #Global templates for HTML files
+        'DIRS': [os.path.join(BASE_DIR, '_appUser/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # Use MySQL as the database engine
         'NAME': 'colaborativosddbb',  # Name of your database
         'USER': 'root',           # MySQL user
-        'PASSWORD': 'MasTer123@@**',           # MySQL password
+        'PASSWORD': 'vxrail123#123',           # MySQL password
         'HOST': 'localhost',                   # Database host (use IP if not localhost)
         'PORT': '3306',                        # Default MySQL port
     }
@@ -144,9 +146,10 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",  # Si usas Live Server
-    "http://localhost:5500"   # Asegúrate que el puerto coincida
+    'http://127.0.0.1:8000',
+    'http://localhost:5500',
 ]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -165,3 +168,10 @@ SIMPLE_JWT = {
     'VERIFYING_KEY': None,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'halomasterchiefcollection112@gmail.com'
+EMAIL_HOST_PASSWORD = 'aedm ixlg hqvc zgnf'

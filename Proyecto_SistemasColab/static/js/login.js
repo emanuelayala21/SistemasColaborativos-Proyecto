@@ -7,21 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     form.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Evita la recarga de la página
+        event.preventDefault();
 
-        // Capturar valores del formulario
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
-        // Validar que los campos no estén vacíos
         if (!email || !password) {
             alert("Por favor, completa todos los campos.");
             return;
         }
 
         try {
-            // Enviar datos al servidor para autenticación
-            const response = await fetch("http://localhost:8000/api/usuario/login/", {
+            const response = await fetch("http://127.0.0.1:8000/api/usuario/login/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -32,27 +29,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             });
 
-            const data = await response.json();
-
-            // Mostrar mensaje según la respuesta del servidor
             const messageBox = document.getElementById("loginMessage");
+            const data = await response.json(); // ✅ solo una vez
+
             if (response.ok) {
-                const token = data.access; // Ajusta según la respuesta de tu servidor
+                const token = data.access;
 
                 if (token) {
-                    // Guardar el token en el localStorage
                     localStorage.setItem("access_token", token);
-
                     messageBox.innerHTML = `<span class="success">✅ Autenticación exitosa. Bienvenido!</span>`;
-                    form.reset(); // Limpiar el formulario después de un inicio de sesión exitoso
-
-                    // Redirigir a la página principal (o cualquier página que elijas)
-                    window.location.href = "http://127.0.0.1:5500/Mantis-Bootstrap-1.0.0/dist/dashboard/index.html"; // Cambia a la URL que desees
+                    form.reset();
+                    // Redirige a la vista de Django
+                    window.location.href = "/api/usuario/custom_design/";
                 } else {
                     messageBox.innerHTML = `<span class="error">No se recibió un token válido.</span>`;
                 }
             } else {
-                messageBox.innerHTML = `<span class="error"> ${data.message}</span>`;
+                messageBox.innerHTML = `<span class="error">${data.message || "Credenciales incorrectas."}</span>`;
             }
 
         } catch (error) {

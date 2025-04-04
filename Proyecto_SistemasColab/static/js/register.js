@@ -8,14 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     form.addEventListener("submit", async function(event) {
-        event.preventDefault(); // Evita que la página se recargue
+        event.preventDefault();
 
-        // Capturar valores del formulario
         const nombre = document.getElementById("nombre").value.trim();
         const email = document.getElementById("email").value.trim();
         const contraseña = document.getElementById("password").value;
 
-        // Validar que los campos no estén vacíos
         if (!nombre || !email || !contraseña) {
             showMessage("Todos los campos son obligatorios.", "error");
             return;
@@ -27,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            // Enviar datos al servidor
             const response = await fetch("http://127.0.0.1:8000/api/usuario/crear_usuario/", {
                 method: "POST",
                 headers: {
@@ -42,17 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const data = await response.json();
 
-            // Mostrar mensaje de éxito o error
             if (response.ok) {
-                showMessage("¡Registro exitoso! Redirigiendo a iniciar sesión...", "success");
-                form.reset(); // Limpiar formulario después del registro exitoso
-                
-                // Redirigir después de 2 segundos
+                showMessage("¡Registro exitoso! Redirigiendo...", "success");
+                form.reset();
                 setTimeout(() => {
-                    window.location.href = "login.html";
+                    window.location.href = "/api/usuario/custom_design/";
                 }, 2000);
             } else {
-                showMessage(data.message || "Hubo un error en el registro.", "error");
+                showMessage(data.message || "Error al registrar.", "error");
             }
 
         } catch (error) {

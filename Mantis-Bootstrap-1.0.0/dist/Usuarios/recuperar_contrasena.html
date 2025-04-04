@@ -1,0 +1,14 @@
+<h2>Recuperar Contraseña</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <label for="correo">Correo electrónico:</label>
+  <input type="email" name="correo" required>
+  <button type="submit">Enviar nueva contraseña</button>
+</form>
+
+{% if messages %}
+  {% for message in messages %}
+    <p style="color: red;">{{ message }}</p>
+  {% endfor %}
+{% endif %}

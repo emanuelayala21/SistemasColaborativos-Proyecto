@@ -1,0 +1,16 @@
+<h2>Cambiar Contraseña</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <label>Nueva contraseña:</label>
+  <input type="password" name="nueva" required><br>
+  <label>Confirmar contraseña:</label>
+  <input type="password" name="confirmar" required><br>
+  <button type="submit">Guardar</button>
+</form>
+
+{% if messages %}
+  {% for message in messages %}
+    <p style="color: red;">{{ message }}</p>
+  {% endfor %}
+{% endif %}

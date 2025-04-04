@@ -4,7 +4,8 @@ function checkAuth() {
 
     if (!token) {
         // Si no hay token, redirige al login
-        window.location.href = "/Mantis-Bootstrap-1.0.0/dist/Usuarios/login.html";
+        window.location.href = "http://127.0.0.1:8000/api/usuario/login_html/";
+
     }
 }
 
