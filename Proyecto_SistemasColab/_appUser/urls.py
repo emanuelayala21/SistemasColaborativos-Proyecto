@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import crear_usuario, listar_usuarios, obtener_usuario, actualizar_usuario, eliminar_usuario, login_usuario
+from .views import crear_usuario, listar_usuarios, obtener_usuario, actualizar_usuario, eliminar_usuario, login_usuario,vista_login, vista_registro
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -10,5 +10,9 @@ urlpatterns = [
     path('eliminar_usuario/<int:pk>/', eliminar_usuario, name='eliminar_usuario'),  # DELETE
     path('login/', login_usuario, name='login_usuario'),  # <-- Nueva ruta para login
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Refrescar Token
+
+    # Rutas HTML
+    path('login_page/', vista_login, name='vista_login'),
+    path('registro_page/', vista_registro, name='vista_registro'),
 ]
 

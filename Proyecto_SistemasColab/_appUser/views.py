@@ -5,6 +5,13 @@ from .serializers import UsuarioSerializer
 from .models import Usuario
 from django.contrib.auth.hashers import check_password
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.shortcuts import render
+
+def vista_login(request):
+    return render(request, 'users/login.html')
+
+def vista_registro(request):
+    return render(request, 'users/registro.html')
 
 # Crear usuario (POST) - Ya lo tienes
 @api_view(['POST'])

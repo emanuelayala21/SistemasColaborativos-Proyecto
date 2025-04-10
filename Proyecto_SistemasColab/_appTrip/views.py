@@ -4,6 +4,13 @@ from rest_framework.generics import ListAPIView
 from rest_framework import serializers
 from .models import Viaje
 from .serializers import ViajeSerializer
+from django.shortcuts import render
+
+def vista_dashboard(request):
+    return render(request, 'trips/index.html')
+
+def vista_viajes(request):
+    return render(request, 'trips/Gestion_viajes.html')
 
 class ViajeViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
