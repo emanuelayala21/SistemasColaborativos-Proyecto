@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Redirigir después de 2 segundos
                 setTimeout(() => {
-                    window.location.href = "login.html";
+                    window.location.href = "http://127.0.0.1:8000/api/usuario/login_page/";
                 }, 2000);
             } else {
                 showMessage(data.message || "Hubo un error en el registro.", "error");

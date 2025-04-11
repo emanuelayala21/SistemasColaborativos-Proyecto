@@ -19,6 +19,7 @@ async function obtenerViajes() {
                     li.classList.add('list-group-item', 'viaje-item', 'mb-3', 'position-relative', 'shadow-sm');
                     li.setAttribute('data-id', viaje.id);  // Añadir data-id
 
+
                     li.innerHTML = `
                         <div class="viaje-container">
                             <!-- Botones de editar y eliminar -->

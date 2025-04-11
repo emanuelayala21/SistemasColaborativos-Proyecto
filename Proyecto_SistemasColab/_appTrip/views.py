@@ -2,9 +2,10 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView
 from rest_framework import serializers
-from .models import Viaje
+from .models import Viaje, Participante_Viaje
 from .serializers import ViajeSerializer
 from django.shortcuts import render
+from datetime import date
 
 def vista_dashboard(request):
     return render(request, 'trips/index.html')
@@ -29,7 +30,18 @@ class ViajeViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError({"detail": "No se pudo determinar el usuario actual."})
         # Asignar el usuario como creador del viaje
         print(f"Usuario asignado: {user}")
-        serializer.save(cedula_creador=user)
+        # Guardar el viaje con el usuario como creador
+        viaje = serializer.save(cedula_creador=user)
+
+        # Registrar al creador como participante del viaje
+        Participante_Viaje.objects.create(
+            viaje=viaje,
+            usuario=user,
+            fecha_union=date.today(),
+            es_admin=True  # puedes poner False si no deseas que sea admin
+        )
+
+        
 
     def perform_update(self, serializer):
         # Verificar que el usuario autenticado es el creador del viaje antes de permitir la actualización
