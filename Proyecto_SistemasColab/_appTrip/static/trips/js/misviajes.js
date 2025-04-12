@@ -117,3 +117,40 @@ async function actualizarViaje(event) {
         console.error('Error de conexión al actualizar el viaje:', error);
     }
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("access_token");
+    console.log("✅ dashboard.js cargado");
+    if (!token) {
+        window.location.href = "/login/";  // Redirige si no hay token
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:8000/api/viaje/", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        const container = document.getElementById("viajes-container");
+        if (response.ok && Array.isArray(data)) {
+            data.forEach(viaje => {
+                const card = `
+                    <div class="card m-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${viaje.nombre}</h5>
+                            <p class="card-text">${viaje.descripcion}</p>
+                        </div>
+                    </div>`;
+                container.innerHTML += card;
+            });
+        } else {
+            container.innerHTML = "<p>No tienes viajes.</p>";
+        }
+    } catch (error) {
+        console.error("Error al cargar los viajes", error);
+    }
+});
