@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import (
     ViajeViewSet,     ListarViajesView,    ListarViajesParticipanteView,    ParticipantesViajeView,    NotasImportantesView, UnirseAViajeView,
-       vista_dashboard,    vista_viajes,    viaje_muro
+    CrearNotaImportante,
+    vista_dashboard,    vista_viajes,    viaje_muro,
 )
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     path('participantes/<int:viaje_id>/', ParticipantesViajeView.as_view(), name='participantes_viaje'),
     path('notas/<int:viaje_id>/', NotasImportantesView.as_view(), name='notas_importantes'),
     path('unirse/', UnirseAViajeView.as_view(), name='unirse_a_viaje'),
+    path('notas/<int:viaje_id>/crear/', CrearNotaImportante.as_view(), name='crear_nota_importante'),
 
     # Rutas para vistas HTML (Frontend)
     path('dashboard/', vista_dashboard, name='vista_dashboard'),

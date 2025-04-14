@@ -37,15 +37,32 @@
       </div>
 
       <!-- Notas importantes y votaciones -->
-      <div class="col-md-8">
+      <div class="col-md-7">
         <div id="notas-importantes" class="card shadow-sm">
+          <h3>Publicaciones</h3>
           <!-- Notas y votaciones se insertarán dinámicamente -->
         </div>
-        
+        <!-- Formulario para crear una publicación -->
+        <div id="crear-publicacion" class="card shadow-sm mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Crear publicación</h5>
+            <form id="form-publicacion">
+              <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" class="form-control" id="titulo" required>
+              </div>
+              <div class="mb-3">
+                <label for="contenido" class="form-label">Nota</label>
+                <textarea class="form-control" id="contenido" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Agregar publicación</button>
+            </form>
+          </div>
+        </div>
       </div>
 
       <!-- Participantes -->
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div id="participantes" class="card shadow-sm">
           <!-- Participantes se insertarán dinámicamente -->
         </div>
@@ -116,7 +133,7 @@
       const notas = await notasResponse.json();
       const notasContainer = document.getElementById("notas-importantes");
 
-      notasContainer.innerHTML = "<h5>Publicaciones</h5>";
+
       if (notas.length === 0) {
         notasContainer.innerHTML += `<p>No hay notas publicaciones aún.</p>`;
       } else {
@@ -130,11 +147,56 @@
         `;
           notasContainer.appendChild(notaDiv);
         });
-      }
+      } const form = document.getElementById("form-publicacion");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const titulo = document.getElementById("titulo").value;
+        const contenido = document.getElementById("contenido").value;
+
+        if (!titulo || !contenido) {
+          alert("Por favor, completa todos los campos.");
+          return;
+        }
+
+        try {
+          const response = await fetch(`http://localhost:8000/api/viaje/notas/${viajeId}/crear/`, {
+            method: 'POST',
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              titulo: titulo,
+              contenido: contenido,
+            }),
+          });
+
+          if (response.ok) {
+            const nuevaNota = await response.json();
+            // Aquí puedes agregar la nueva nota a la vista sin recargar la página
+            const notaDiv = document.createElement("div");
+            notaDiv.classList.add("card", "mb-2", "p-2");
+            notaDiv.innerHTML = `
+      <h6>${nuevaNota.titulo}</h6>
+      <p>${nuevaNota.contenido}</p>
+      <small><strong>Por:</strong> ${nuevaNota.usuario_nombre} | ${nuevaNota.fecha_creacion}</small>
+    `;
+            // Usamos appendChild para agregar la nueva nota después de las existentes
+            notasContainer.appendChild(notaDiv); // Agregar la nueva nota al final
+            form.reset();
+          } else {
+            throw new Error("Error al crear la publicación.");
+          }
+        } catch (error) {
+          console.error("Error al crear la publicación:", error);
+        }
+      });
 
     } catch (error) {
       console.error("Error al cargar los datos:", error);
     }
+
   });
 
 </script>

@@ -81,7 +81,7 @@ class Nota_Importante(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     titulo = models.CharField(max_length=25)
     contenido = models.CharField(max_length=255)
-    fecha_creacion = models.DateField()
+    fecha_creacion = models.DateField(auto_now_add=True)
 
     class Meta:
         db_table = 'Nota_Importante'

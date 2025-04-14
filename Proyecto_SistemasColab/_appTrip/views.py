@@ -116,3 +116,22 @@ class UnirseAViajeView(APIView):
 
         Participante_Viaje.objects.create(usuario=usuario, viaje=viaje)
         return Response({'detail': 'Te has unido correctamente al viaje.'}, status=status.HTTP_200_OK)
+
+class CrearNotaImportante(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, viaje_id):
+        viaje = Viaje.objects.get(id=viaje_id)
+        if not viaje:
+            return Response({"detail": "Viaje no encontrado."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Crear la publicación
+        nota = Nota_Importante.objects.create(
+            titulo=request.data['titulo'],
+            contenido=request.data['contenido'],
+            usuario=request.user,
+            viaje=viaje,
+        )
+
+        serializer = NotaImportanteSerializer(nota)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
