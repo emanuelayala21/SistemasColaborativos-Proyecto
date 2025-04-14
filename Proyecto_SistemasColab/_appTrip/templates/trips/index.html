@@ -59,10 +59,18 @@
       </div>
     </div>
   </header>
+  <h3 class="text-center mb-4">Tus Viajes</h3>
 
+  <div class="text-center mb-4">
+    <input type="text" id="codigoViaje" class="form-control d-inline-block w-auto me-2" placeholder="Código del viaje">
+    <button class="btn btn-success" onclick="unirseAViaje()">Unirse</button>
+    <p id="mensaje-unirse" class="mt-2"></p>
+  </div>
   <div id="viajes-container" class="row justify-content-center">
+   
     <div class="container mt-5">
-      <h3 class="text-center mb-4">Tus Viajes</h3>
+      
+     
       <div id="viajes-container" class="row justify-content-center gap-4">
         <!-- Aquí se insertan las tarjetas -->
       </div>
@@ -133,7 +141,43 @@
 
   // Redirigir a la página del viaje
   window.location.href = `/api/viaje/viaje_muro/`;
-}
-</script>
+  }
+  async function unirseAViaje() {
+      const codigo = document.getElementById("codigoViaje").value.trim();
+      const token = localStorage.getItem("access_token");
+      const mensaje = document.getElementById("mensaje-unirse");
+
+      if (!codigo) {
+        mensaje.textContent = "Por favor, ingresa un código.";
+        mensaje.className = "text-danger";
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:8000/api/viaje/unirse/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify({ codigo: codigo })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          mensaje.textContent = "¡Te has unido correctamente al viaje!";
+          mensaje.className = "text-success";
+          setTimeout(() => window.location.reload(), 1500);
+        } else {
+          mensaje.textContent = data.detail || "No se pudo unir al viaje.";
+          mensaje.className = "text-danger";
+        }
+      } catch (error) {
+        mensaje.textContent = "Error al conectar con el servidor.";
+        mensaje.className = "text-danger";
+      }
+    }
+  </script>
 
 </html>

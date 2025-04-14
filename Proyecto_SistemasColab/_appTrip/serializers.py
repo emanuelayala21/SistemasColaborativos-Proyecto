@@ -1,15 +1,13 @@
 from rest_framework import serializers
-from .models import Viaje
-from .models import Participante_Viaje
+from .models import Viaje, Participante_Viaje, Nota_Importante
 from _appUser.models import Usuario
-from .models import Nota_Importante
 
 class ViajeSerializer(serializers.ModelSerializer):
     creador_nombre = serializers.CharField(source='cedula_creador.nombre_usuario', read_only=True)
 
     class Meta:
         model = Viaje
-        fields = ['id', 'titulo', 'fecha_inicio', 'fecha_fin', 'descripcion', 'fecha_creacion', 'creador_nombre']
+        fields = ['id', 'titulo', 'fecha_inicio', 'fecha_fin', 'descripcion', 'fecha_creacion', 'creador_nombre', 'codigo_invitacion']
         read_only_fields = ['id', 'fecha_creacion']
 
 class ParticipanteSerializer(serializers.ModelSerializer):
