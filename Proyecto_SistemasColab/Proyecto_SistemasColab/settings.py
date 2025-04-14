@@ -44,11 +44,17 @@ INSTALLED_APPS = [
     '_appUser',  # For user management
     '_appTrip',  # For trip management
     '_appReports',  # For managing reports
-    '_appNotifications',  # For managing notifications
+    'appNotifications.apps.AppnotificationsConfig',  # For managing notifications
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_celery_beat',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -167,3 +173,15 @@ SIMPLE_JWT = {
     'VERIFYING_KEY': None,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TIMEZONE = 'America/Costa_Rica'
+CELERY_ENABLE_UTC = False
+CELERY_BEAT_MAX_LOOP_INTERVAL = 60  # Esto debería estar en 60 segundos para que las tareas se programen cada minuto.
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+TIME_ZONE = 'America/Costa_Rica'
+USE_TZ = True

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class UsuarioManager(BaseUserManager):
     def create_user(self, nombre_usuario, correo, contrasena=None, **extra_fields):
@@ -17,13 +17,13 @@ class UsuarioManager(BaseUserManager):
         return self.create_user(nombre_usuario, correo, contrasena, **extra_fields)
 
 
-class Usuario(AbstractBaseUser):
+class Usuario(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
     nombre_usuario = models.CharField(max_length=50)  # El campo ya no es único
     correo = models.EmailField(max_length=100, unique=True)  # El correo sigue siendo único
     contrasena = models.CharField(max_length=255)
     fecha_creacion = models.DateField(auto_now_add=True)
-
+    is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
