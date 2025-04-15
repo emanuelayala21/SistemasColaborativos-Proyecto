@@ -16,72 +16,119 @@
   <link rel="stylesheet" href="{% static '../static/trips/css/tabler-icons.min.css' %}">
   <link rel="stylesheet" href="{% static '../static/trips/css/fontawesome.css' %}">
   <link rel="stylesheet" href="{% static '../static/trips/css/style_dashboard.css' %}">
+  <link rel="stylesheet" href="{% static '../static/trips/css/index.css' %}">
 </head>
 
 <body>
   <header class="pc-header">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <!-- Logo / Título -->
-        <h2 class="header-title">Sistema de Viajes</h2>
-
-        <!-- Navbar Toggle para pantallas pequeñas -->
-        <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Menú de navegación -->
-        <nav class="collapse navbar-collapse d-md-flex" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <button class="btn btn-main me-2" onclick="location.href='/api/viaje/gestion/'">
-                <i class="bi bi-briefcase me-2"></i> Gestión de Viajes
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-main me-2" onclick="location.href='../dashboard/Votaciones_Decisiones.html'">
-                <i class="bi bi-check-circle me-2"></i> Votaciones y Toma de Decisiones
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-main" onclick="location.href='../dashboard/reportes.html'">
-                <i class="bi bi-file-earmark-pdf me-2"></i> Reportes de Viajes
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-danger ms-3" id="logout-btn">
-                <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <div class="navbar-custom">
+      <div class="navbar-title">Sistema de Viajes</div>
+      <nav class="navbar-links">
+        <a href="/api/viaje/viaje_info/">Tus Viajes</a>
+        <a href="/api/viaje/gestion/">Crear Viajes</a>
+        <a href="../dashboard/Votaciones_Decisiones.html">Votaciones</a>
+        <a href="../dashboard/reportes.html">Reportes de Viajes</a>
+        <a href="#" id="logout-btn" class="logout-link">Cerrar sesión</a>
+      </nav>
     </div>
   </header>
-  <h3 class="text-center mb-4">Tus Viajes</h3>
+  <nav class="titulo-navbar">
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+      <h2 class="titulo-pagina">Tus Viajes</h2>
+    </div>
+  </nav>
 
-  <div class="text-center mb-4">
-    <input type="text" id="codigoViaje" class="form-control d-inline-block w-auto me-2" placeholder="Código del viaje">
-    <button class="btn btn-success" onclick="unirseAViaje()">Unirse</button>
-    <p id="mensaje-unirse" class="mt-2"></p>
-  </div>
-  <div id="viajes-container" class="row justify-content-center">
-   
-    <div class="container mt-5">
-      
-     
-      <div id="viajes-container" class="row justify-content-center gap-4">
-        <!-- Aquí se insertan las tarjetas -->
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Columna izquierda para el código -->
+      <div class="col-md-3">
+        <div class="codigo-viaje-box p-3 rounded">
+          <label for="codigoViaje" class="form-label">¿Tienes un código de viaje?</label>
+          <input type="text" id="codigoViaje" class="form-control mb-2" placeholder="Ej: ABC123">
+          <button class="btn btn-outline-primary w-100" onclick="unirseAViaje()">Unirse</button>
+          <p id="mensaje-unirse" class="mt-2 small"></p>
+        </div>
+      </div>
+
+      <!-- Columna derecha para las tarjetas -->
+      <div class="col-md-9">
+        <div id="viajes-container" class="row row-cols-1 row-cols-md-3 g-4">
+          <!-- Aquí se insertan las tarjetas -->
+        </div>
       </div>
     </div>
   </div>
+  <style>
+    #viajes-container {
+      gap: 2rem !important;
+      
+    }
 
+    #viajes-container .col-md-4 {
+      margin-bottom: 2rem;
+      /* Espacio vertical adicional */
+    }
+
+    /* Estilo general del contenedor izquierdo */
+    .codigo-viaje-box {
+      background-color: #f0f4f8;
+      border-left: 4px solid #0d6efd;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .codigo-viaje-box:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .codigo-viaje-box input,
+    .codigo-viaje-box button {
+      font-size: 0.9rem;
+    }
+
+    .codigo-viaje-box label {
+      font-weight: 500;
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    #mensaje-unirse {
+      color: #198754;
+      font-weight: 500;
+    }
+
+    /* Estilo para las tarjetas de viaje */
+    #viajes-container .card {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #viajes-container .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Título principal */
+    .titulo-navbar {
+      background-color: #0d6efd;
+      padding: 10px 0;
+    }
+
+    .titulo-pagina {
+      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{% static 'js/auth.js' %}"></script>
   <script src="{% static 'js/cerrar_sesion.js' %}"></script>
 </body>
- <script>
+<script>
   document.addEventListener("DOMContentLoaded", async () => {
     const container = document.getElementById("viajes-container");
     const token = localStorage.getItem("access_token");
@@ -137,47 +184,47 @@
   });
 
   function handleIrAViaje(viajeId) {
-  document.cookie = `viaje_id=${viajeId}; path=/`;
+    document.cookie = `viaje_id=${viajeId}; path=/`;
 
-  // Redirigir a la página del viaje
-  window.location.href = `/api/viaje/viaje_muro/`;
+    // Redirigir a la página del viaje
+    window.location.href = `/api/viaje/viaje_muro/`;
   }
   async function unirseAViaje() {
-      const codigo = document.getElementById("codigoViaje").value.trim();
-      const token = localStorage.getItem("access_token");
-      const mensaje = document.getElementById("mensaje-unirse");
+    const codigo = document.getElementById("codigoViaje").value.trim();
+    const token = localStorage.getItem("access_token");
+    const mensaje = document.getElementById("mensaje-unirse");
 
-      if (!codigo) {
-        mensaje.textContent = "Por favor, ingresa un código.";
-        mensaje.className = "text-danger";
-        return;
-      }
-
-      try {
-        const response = await fetch("http://localhost:8000/api/viaje/unirse/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
-          },
-          body: JSON.stringify({ codigo: codigo })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          mensaje.textContent = "¡Te has unido correctamente al viaje!";
-          mensaje.className = "text-success";
-          setTimeout(() => window.location.reload(), 1500);
-        } else {
-          mensaje.textContent = data.detail || "No se pudo unir al viaje.";
-          mensaje.className = "text-danger";
-        }
-      } catch (error) {
-        mensaje.textContent = "Error al conectar con el servidor.";
-        mensaje.className = "text-danger";
-      }
+    if (!codigo) {
+      mensaje.textContent = "Por favor, ingresa un código.";
+      mensaje.className = "text-danger";
+      return;
     }
-  </script>
+
+    try {
+      const response = await fetch("http://localhost:8000/api/viaje/unirse/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ codigo: codigo })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        mensaje.textContent = "¡Te has unido correctamente al viaje!";
+        mensaje.className = "text-success";
+        setTimeout(() => window.location.reload(), 1500);
+      } else {
+        mensaje.textContent = data.detail || "No se pudo unir al viaje.";
+        mensaje.className = "text-danger";
+      }
+    } catch (error) {
+      mensaje.textContent = "Error al conectar con el servidor.";
+      mensaje.className = "text-danger";
+    }
+  }
+</script>
 
 </html>

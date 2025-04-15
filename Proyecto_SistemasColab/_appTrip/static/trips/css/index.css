@@ -1,0 +1,104 @@
+.pc-header {
+    background-color: #0175bd;
+    /* Azul Bootstrap */
+    color: white;
+    padding: 0%;
+}
+
+.navbar-custom {
+    display: flex;
+    align-items: stretch;
+    height: 70px;
+    /* Altura del header */
+    width: 100%;
+}
+
+.navbar-title {
+    flex: 0.5;
+    /* Ocupa más espacio que cada botón */
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: bold;
+    background-color: #00a1ff;
+    /* Azul más oscuro que el header */
+    white-space: nowrap;
+}
+
+.navbar-links {
+    display: flex;
+    flex: 1;
+}
+
+.navbar-links a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+/* Línea blanca entre los enlaces */
+.navbar-links a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background-color: white;
+}
+
+.navbar-links a:hover {
+    background-color: #2079ff;
+    /* Un azul un poco más oscuro al pasar el mouse */
+}
+
+.logout-link {
+    background-color: #dc3545;
+    /* Rojo Bootstrap */
+}
+
+#logout-btn:hover {
+    background-color: #b11121;
+}
+
+.titulo-navbar {
+    background-color: #f8f9fa;
+    /* Color claro tipo gris */
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.titulo-pagina {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #007bff;
+    /* Azul claro */
+    margin: 0;
+}
+
+.codigo-viaje-box {
+    background-color: #69aff5;
+    /* Gris clarito */
+    border: 1px solid #dee2e6;
+    /* Borde tenue */
+    max-width: 450px;
+}
+
+.separador-titulo {
+    border-top: 2px solid #dee2e6;
+    margin: 0;
+}
+
+.separador-publicacion {
+    border-top: 1px dashed #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

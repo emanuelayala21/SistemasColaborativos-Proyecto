@@ -18,6 +18,9 @@ def vista_dashboard(request):
 def vista_viajes(request):
     return render(request, 'trips/Gestion_viajes.html')
 
+def vista_viajes_info(request):
+    return render(request, 'trips/index.html')
+
 def viaje_muro(request):
     return render(request, 'trips/viaje.html')
 

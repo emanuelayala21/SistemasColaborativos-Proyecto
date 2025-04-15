@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     ViajeViewSet,     ListarViajesView,    ListarViajesParticipanteView,    ParticipantesViajeView,    NotasImportantesView, UnirseAViajeView,
     CrearNotaImportante,
-    vista_dashboard,    vista_viajes,    viaje_muro,
+    vista_dashboard,    vista_viajes,    viaje_muro, vista_viajes_info
 )
 
 urlpatterns = [
@@ -19,5 +19,6 @@ urlpatterns = [
     # Rutas para vistas HTML (Frontend)
     path('dashboard/', vista_dashboard, name='vista_dashboard'),
     path('gestion/', vista_viajes, name='vista_viajes'),
+    path('viaje_info/', vista_viajes_info, name='vista_viajes_info'),
     path('viaje_muro/', viaje_muro, name='viaje_muro'),
 ]

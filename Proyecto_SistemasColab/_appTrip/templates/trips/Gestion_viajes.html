@@ -16,12 +16,31 @@
   <link rel="stylesheet" href="{% static '../static/trips/css/Style_Gestion_Viajes.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="{% static '../static/trips/css/tabler-icons.min.css' %}">
+  <link rel="stylesheet" href="{% static '../static/trips/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static '../static/trips/css/style_dashboard.css' %}">
+  <link rel="stylesheet" href="{% static '../static/trips/css/index.css' %}">
+
 </head>
 
 <body>
-  <header class="header-section">
-    <h2 class="text-white text-center py-3">Gestión de Viajes</h2>
+  <header class="pc-header">
+    <div class="navbar-custom">
+      <div class="navbar-title">Sistema de Viajes</div>
+      <nav class="navbar-links">
+        <a href="/api/viaje/viaje_info/">Tus Viajes</a>
+        <a href="/api/viaje/gestion/">Crear Viajes</a>
+        <a href="../dashboard/Votaciones_Decisiones.html">Votaciones</a>
+        <a href="../dashboard/reportes.html">Reportes de Viajes</a>
+        <a href="#" id="logout-btn" class="logout-link">Cerrar sesión</a>
+      </nav>
+    </div>
   </header>
+  <nav class="titulo-navbar">
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+      <h2 class="titulo-pagina">Crear Viaje</h2>
+    </div>
+  </nav>
 
   <div class="container mt-4">
     <div class="form-container">

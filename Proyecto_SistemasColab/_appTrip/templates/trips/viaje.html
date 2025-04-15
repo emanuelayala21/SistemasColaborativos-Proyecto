@@ -12,27 +12,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static '../static/trips/css/tabler-icons.min.css' %}">
+  <link rel="stylesheet" href="{% static '../static/trips/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static '../static/trips/css/style_dashboard.css' %}">
+  
 
+  <style>
+    
+
+    #crear-publicacion .btn {
+      width: 100%;
+    }
+
+    #notas-importantes h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    #participantes {
+      padding-bottom: 1rem;
+    }
+
+    .nota-item {
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .list-group-item {
+      background-color: transparent;
+      border: none;
+      padding-left: 1rem;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- HEADER -->
   <header class="pc-header">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <h2 class="header-title">Viaje - Muro</h2>
-        <button class="btn btn-danger ms-3" id="logout-btn">
-          <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
-        </button>
-      </div>
+    <div class="navbar-custom">
+      <div class="navbar-title">Sistema de Viajes</div>
+      <nav class="navbar-links">
+        <a href="/api/viaje/viaje_info/">Tus Viajes</a>
+        <a href="/api/viaje/gestion/">Crear Viajes</a>
+        <a href="../dashboard/Votaciones_Decisiones.html">Votaciones</a>
+        <a href="../dashboard/reportes.html">Reportes de Viajes</a>
+        <a href="#" id="logout-btn" class="logout-link">Cerrar sesión</a>
+      </nav>
     </div>
   </header>
 
-  <div class="container mt-5">
-    <div class="row">
+  <!-- TÍTULO -->
+  <nav class="titulo-navbar">
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+      <h2 class="titulo-pagina">Muro del Viaje</h2>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <div class="container mt-4">
+    <div class="row g-4">
       <!-- Información del viaje -->
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div id="viaje-info" class="card shadow-sm">
-          <!-- Información se insertará dinámicamente -->
+          <div class="card-header bg-light">
+            <h5 class="m-0">🧳 Info del Viaje</h5>
+            <hr class="separador-titulo">
+          </div>
+          <!-- Contenido se insertará dinámicamente -->
         </div>
       </div>
 
@@ -40,6 +90,7 @@
       <div class="col-md-7">
         <div id="notas-importantes" class="card shadow-sm">
           <h3>Publicaciones</h3>
+          <hr class="separador-titulo">
           <!-- Notas y votaciones se insertarán dinámicamente -->
         </div>
         <!-- Formulario para crear una publicación -->
@@ -62,17 +113,18 @@
       </div>
 
       <!-- Participantes -->
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div id="participantes" class="card shadow-sm">
+          <div class="card-header bg-light">
+            <h5 class="m-0">🧑‍🤝‍🧑 Participantes</h5>
+            <hr class="separador-titulo">
+          </div>
           <!-- Participantes se insertarán dinámicamente -->
         </div>
       </div>
-    </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body><link rel="stylesheet" href="{% static '../static/trips/css/index.css' %}">
 <script>
   function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -99,7 +151,7 @@
 
       const viaje = await response.json();
 
-      document.getElementById("viaje-info").innerHTML = `
+      document.getElementById("viaje-info").innerHTML += `
         <div class="card-body">
           <h5 class="card-title">${viaje.titulo}</h5>
           <p class="card-text">${viaje.descripcion}</p>
@@ -116,7 +168,7 @@
 
       const participantes = await participantesResponse.json();
       const participantesContainer = document.getElementById("participantes");
-      participantesContainer.innerHTML = `<div class="card-body"><h5 class="card-title">Participantes</h5></div>`;
+      participantesContainer.innerHTML += `<div class="card-body"><h5 class="card-title">Participantes</h5></div>`;
       participantes.forEach(p => {
         participantesContainer.innerHTML += `
         <div class="list-group-item">${p.usuario_nombre}</div>
@@ -141,10 +193,11 @@
           const notaDiv = document.createElement("div");
           notaDiv.classList.add("card", "mb-2", "p-2");
           notaDiv.innerHTML = `
-          <h6>${nota.titulo}</h6>
-          <p>${nota.contenido}</p>
-          <small><strong>Por:</strong> ${nota.usuario_nombre} | ${nota.fecha_creacion}</small>
-        `;
+  <h6>${nota.titulo}</h6>
+  <p>${nota.contenido}</p>
+  <small><strong>Por:</strong> ${nota.usuario_nombre} | ${nota.fecha_creacion}</small>
+  <hr class="separador-publicacion">
+`;
           notasContainer.appendChild(notaDiv);
         });
       } const form = document.getElementById("form-publicacion");
@@ -177,7 +230,7 @@
             // Aquí puedes agregar la nueva nota a la vista sin recargar la página
             const notaDiv = document.createElement("div");
             notaDiv.classList.add("card", "mb-2", "p-2");
-            notaDiv.innerHTML = `
+            notaDiv.innerHTML += `
       <h6>${nuevaNota.titulo}</h6>
       <p>${nuevaNota.contenido}</p>
       <small><strong>Por:</strong> ${nuevaNota.usuario_nombre} | ${nuevaNota.fecha_creacion}</small>
