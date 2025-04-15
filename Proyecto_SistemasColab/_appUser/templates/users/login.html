@@ -2,18 +2,20 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="{% static '../static/users/css/login.css' %}">
 </head>
+
 <body>
 
     <div class="login-container">
         <div class="login-box">
             <h2>Iniciar Sesión</h2>
-            
+
             <form id="loginForm">
                 <div class="input-group">
                     <label for="email">Correo Electrónico:</label>
@@ -25,9 +27,16 @@
                 </div>
 
                 <button type="submit" class="login-btn">Iniciar Sesión</button>
-                
+
                 <!-- Botón de registro con mejor diseño -->
-                <button type="button" class="register-btn" onclick="location.href='/api/usuario/registro_page/'">Registrarse</button>
+                <button type="button" class="register-btn"
+                    onclick="location.href='/api/usuario/registro_page/'">Registrarse</button>
+
+                <!-- Enlace para restablecer contraseña -->
+                <div class="forgot-password" style="margin-top: 10px; text-align: center;">
+                    <a href="/api/usuario/recuperar_page/">¿Olvidaste tu contraseña?</a>
+                </div>
+
             </form>
 
             <div id="loginMessage" class="login-message"></div>
@@ -36,4 +45,5 @@
 
     <script src="{% static '../static/users/js/login.js' %}"></script>
 </body>
+
 </html>

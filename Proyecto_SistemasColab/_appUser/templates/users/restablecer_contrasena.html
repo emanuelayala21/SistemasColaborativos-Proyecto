@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Restablecer Contraseña</title>
+    <link rel="stylesheet" href="{% static '../static/users/css/login.css' %}">
+</head>
+<body>
+<div class="login-container">
+    <div class="login-box">
+        <h2>Restablecer Contraseña</h2>
+        <form id="nueva-contrasena-form">
+            <div class="input-group">
+                <label for="nueva">Nueva contraseña:</label>
+                <input type="password" id="nueva" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmar">Confirmar contraseña:</label>
+                <input type="password" id="confirmar" required>
+            </div>
+            <button type="submit" class="login-btn">Confirmar</button>
+        </form>
+        <div id="mensaje"></div>
+    </div>
+</div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    document.getElementById("nueva-contrasena-form").addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const nueva = document.getElementById("nueva").value;
+        const confirmar = document.getElementById("confirmar").value;
+
+        if (nueva !== confirmar) {
+            document.getElementById("mensaje").innerText = "Las contraseñas no coinciden.";
+            return;
+        }
+
+        const res = await fetch("/api/usuario/restablecer_contrasena/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ token, nueva_contrasena: nueva })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            document.getElementById("mensaje").innerText = "Contraseña restablecida con éxito.";
+            setTimeout(() => {
+                window.location.href = "http://127.0.0.1:8000/api/usuario/login_page/";
+            }, 2000);
+        } else {
+            document.getElementById("mensaje").innerText = data.message || "Error al restablecer contraseña.";
+        }
+    });
+</script>
+</body>
+</html>
